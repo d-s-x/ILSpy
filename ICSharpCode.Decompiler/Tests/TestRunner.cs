@@ -114,11 +114,12 @@ namespace ICSharpCode.Decompiler.Tests
 			TestFile(@"..\..\Tests\LiftedOperators.cs");
 		}
 		
-		[Test]
-		public void Lock()
+		[TestCase(CompilerVersion.V2)]
+		[TestCase(CompilerVersion.V4)]
+		[TestCase(CompilerVersion.V4Roslyn, IgnoreReason = "Not implemented yet")]
+		public void Lock(CompilerVersion compilerVersion)
 		{
-			//TestFile(@"..\..\Tests\Lock.cs", compilerVersion: 2);
-			TestFile(@"..\..\Tests\Lock.cs", compilerVersion: 4);
+			TestFile(@"..\..\Tests\Lock.cs", compilerVersion: compilerVersion);
 		}
 		
 		[Test]
@@ -194,7 +195,7 @@ namespace ICSharpCode.Decompiler.Tests
 			TestFile(@"..\..\Tests\NotUsingBlock.cs");
 		}
 
-		static void TestFile(string fileName, bool useDebug = false, int compilerVersion = 4)
+		static void TestFile(string fileName, bool useDebug = false, CompilerVersion compilerVersion = CompilerVersion.V4)
 		{
 			AssertRoundtripCode(fileName, optimize: false, useDebug: useDebug, compilerVersion: compilerVersion);
 			AssertRoundtripCode(fileName, optimize: true, useDebug: useDebug, compilerVersion: compilerVersion);

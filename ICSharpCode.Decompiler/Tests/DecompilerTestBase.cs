@@ -25,9 +25,9 @@ using System.Text;
 
 using ICSharpCode.Decompiler.Ast;
 using ICSharpCode.Decompiler.Tests.Helpers;
-using Microsoft.CSharp;
 using Mono.Cecil;
-using NUnit.Framework;
+using LegacyCSharpCodeProvider = Microsoft.CSharp.CSharpCodeProvider;
+using RoslynCSharpCodeProvider = Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider;
 
 namespace ICSharpCode.Decompiler.Tests
 {
@@ -44,7 +44,7 @@ namespace ICSharpCode.Decompiler.Tests
 			return CodeSampleFileParser.ConcatLines(lines.Where(l => !CodeSampleFileParser.IsCommentOrBlank(l)));
 		}
 
-		protected static void AssertRoundtripCode(string fileName, bool optimize = false, bool useDebug = false, int compilerVersion = 4)
+		protected static void AssertRoundtripCode(string fileName, bool optimize = false, bool useDebug = false, CompilerVersion compilerVersion = CompilerVersion.V4)
 		{
 			var code = RemoveIgnorableLines(File.ReadLines(fileName));
 			AssemblyDefinition assembly = CompileLegacy(code, optimize, useDebug, compilerVersion);
@@ -58,13 +58,11 @@ namespace ICSharpCode.Decompiler.Tests
 			CodeAssert.AreEqual(code, output.ToString());
 		}
 
-		protected static AssemblyDefinition CompileLegacy(string code, bool optimize, bool useDebug, int compilerVersion)
+		private static AssemblyDefinition CompileLegacy(string code, bool optimize, bool useDebug, CompilerVersion compilerVersion)
 		{
-			CSharpCodeProvider provider = new CSharpCodeProvider(new Dictionary<string, string> { { "CompilerVersion", "v" + new Version(compilerVersion, 0) } });
-			CompilerParameters options = new CompilerParameters();
-			options.CompilerOptions = "/unsafe /o" + (optimize ? "+" : "-") + (useDebug ? " /debug" : "");
-			if (compilerVersion >= 4)
-				options.ReferencedAssemblies.Add("System.Core.dll");
+			CodeDomProvider provider = GetCompiler(compilerVersion);
+			CompilerParameters options = GetCompilerOptions(optimize, useDebug, compilerVersion);
+
 			CompilerResults results = provider.CompileAssemblyFromSource(options, code);
 			try
 			{
@@ -84,6 +82,51 @@ namespace ICSharpCode.Decompiler.Tests
 				File.Delete(results.PathToAssembly);
 				results.TempFiles.Delete();
 			}
+		}
+
+		private static CodeDomProvider GetCompiler(CompilerVersion compilerVersion)
+		{
+			switch (compilerVersion)
+			{
+				case CompilerVersion.V2: 
+					return new LegacyCSharpCodeProvider(new Dictionary<string, string> { { "CompilerVersion", "v2.0" } });
+
+				case CompilerVersion.V4:
+					return new LegacyCSharpCodeProvider(new Dictionary<string, string> { { "CompilerVersion", "v4.0" } });
+
+				case CompilerVersion.V4Roslyn:
+					return new RoslynCSharpCodeProvider();
+
+				default:
+					throw new NotImplementedException("Unknown compiler version " + compilerVersion);
+			}
+		}
+
+		protected static CompilerParameters GetCompilerOptions(bool optimize, bool useDebug, CompilerVersion compilerVersion)
+		{
+			CompilerParameters options = new CompilerParameters();
+			options.CompilerOptions = "/unsafe /o" + (optimize ? "+" : "-") + (useDebug ? " /debug" : "");
+			switch (compilerVersion)
+			{
+				case CompilerVersion.V2:
+					break;
+
+				case CompilerVersion.V4:
+				case CompilerVersion.V4Roslyn:
+					options.ReferencedAssemblies.Add("System.Core.dll");
+					break;
+
+				default:
+					throw new NotImplementedException("Unknown compiler version " + compilerVersion);
+			}
+			return options;
+		}
+
+		public enum CompilerVersion
+		{
+			V2,
+			V4,
+			V4Roslyn,
 		}
 	}
 }
