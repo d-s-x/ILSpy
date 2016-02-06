@@ -50,12 +50,6 @@ namespace ICSharpCode.Decompiler.Tests
 			return testData;
 		}
 		
-		[Test, Ignore("unncessary primitive casts")]
-		public void CheckedUnchecked()
-		{
-			TestFile(@"..\..\Tests\CheckedUnchecked.cs");
-		}
-		
 		[Test, Ignore("Missing cast on null")]
 		public void DelegateConstruction()
 		{

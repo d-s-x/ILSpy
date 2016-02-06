@@ -85,7 +85,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckedUnchecked.cs" />
     <Compile Include="ControlFlow.cs" />
     <Compile Include="DoubleConstants.cs" />
     <Compile Include="ExpressionTrees.cs" />
@@ -127,6 +126,14 @@
     <EmbeddedResource Include="TestCases\Code\Async\EmptyVoidMethodWithoutAwait.cs" />
     <EmbeddedResource Include="TestCases\Code\CallOverloadedMethod\CallMethodUsingInterface.cs" />
     <EmbeddedResource Include="TestCases\Code\CallOverloadedMethod\OverloadedMethod.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\Operators.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\Cast.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\ForWithCheckedIteratorAndUncheckedBody.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\ForWithCheckedInitializerAndUncheckedIterator.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\ObjectCreationInitializerChecked.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\ObjectCreationWithOneFieldChecked.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\ArrayInitializerChecked.cs" />
+    <EmbeddedResource Include="TestCases\Code\CheckedUnchecked\CheckedInArrayCreationArgument.cs" />
     <Compile Include="TestCases\CompilerVersion.cs" />
     <Compile Include="TestCases\CodeTestCase.cs" />
     <Compile Include="TestCases\CodeTestCaseMatcher.cs" />
