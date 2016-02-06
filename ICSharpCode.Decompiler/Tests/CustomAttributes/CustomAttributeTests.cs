@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace ICSharpCode.Decompiler.Tests.CustomAttributes
 {
@@ -12,19 +8,19 @@ namespace ICSharpCode.Decompiler.Tests.CustomAttributes
 		[Test]
 		public void CustomAttributeSamples()
 		{
-			ValidateFileRoundtrip(@"CustomAttributes\S_CustomAttributeSamples.cs");
+			AssertRoundtripCode(@"..\..\Tests\CustomAttributes\S_CustomAttributeSamples.cs");
 		}
 
 		[Test]
 		public void CustomAttributesMultiTest()
 		{
-			ValidateFileRoundtrip(@"CustomAttributes\S_CustomAttributes.cs");
+			AssertRoundtripCode(@"..\..\Tests\CustomAttributes\S_CustomAttributes.cs");
 		}
 
 		[Test]
 		public void AssemblyCustomAttributesMultiTest()
 		{
-			ValidateFileRoundtrip(@"CustomAttributes\S_AssemblyCustomAttribute.cs");
+			AssertRoundtripCode(@"..\..\Tests\CustomAttributes\S_AssemblyCustomAttribute.cs");
 		}
 	}
 }

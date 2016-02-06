@@ -33,12 +33,6 @@ namespace ICSharpCode.Decompiler.Tests
 {
 	public abstract class DecompilerTestBase
 	{
-		protected static void ValidateFileRoundtrip(string samplesFileName)
-		{
-			var fullPath = Path.Combine(@"..\..\Tests", samplesFileName);
-			AssertRoundtripCode(fullPath);
-		}
-
 		static string RemoveIgnorableLines(IEnumerable<string> lines)
 		{
 			return CodeSampleFileParser.ConcatLines(lines.Where(l => !CodeSampleFileParser.IsCommentOrBlank(l)));
@@ -49,13 +43,26 @@ namespace ICSharpCode.Decompiler.Tests
 			var code = RemoveIgnorableLines(File.ReadLines(fileName));
 			AssemblyDefinition assembly = CompileLegacy(code, optimize, useDebug, compilerVersion);
 
+			AssertAssembly(assembly, code);
+		}
+
+		protected static void AssertAssembly(string compiledFile, string expectedOutputFile)
+		{
+			string expectedOutput = File.ReadAllText(expectedOutputFile);
+			AssemblyDefinition assembly = AssemblyDefinition.ReadAssembly(compiledFile);
+
+			AssertAssembly(assembly, expectedOutput);
+		}
+
+		private static void AssertAssembly(AssemblyDefinition assembly, string expectedOutput)
+		{
 			AstBuilder decompiler = new AstBuilder(new DecompilerContext(assembly.MainModule));
 			decompiler.AddAssembly(assembly);
 			new Helpers.RemoveCompilerAttribute().Run(decompiler.SyntaxTree);
 
 			StringWriter output = new StringWriter();
 			decompiler.GenerateCode(new PlainTextOutput(output));
-			CodeAssert.AreEqual(code, output.ToString());
+			CodeAssert.AreEqual(expectedOutput, output.ToString());
 		}
 
 		private static AssemblyDefinition CompileLegacy(string code, bool optimize, bool useDebug, CompilerVersion compilerVersion)
