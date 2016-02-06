@@ -280,10 +280,10 @@ namespace ICSharpCode.Decompiler.ILAst
 			ILLabel newLabel = new ILLabel();
 			newLabel.Name = "YieldReturnEntryPoint";
 
-			ILExpression expr = pos == 1 && body.Count == 1 ? body[0] as ILExpression : null;
+			ILExpression expr = pos == body.Count ? body[pos - 1] as ILExpression : null;
 			if (expr != null && expr.Code == ILCode.Leave && expr.Operand is ILLabel) {
 				ranges[newLabel] = ranges[(ILLabel)expr.Operand];
-				pos = 0;
+				pos--;
 			} else {
 				ranges[newLabel] = ranges[body[pos]]; // give the label the range of the instruction at body[pos]
 			}
