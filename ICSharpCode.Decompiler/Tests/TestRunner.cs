@@ -50,12 +50,6 @@ namespace ICSharpCode.Decompiler.Tests
 			return testData;
 		}
 		
-		[Test, Ignore("Missing cast on null")]
-		public void DelegateConstruction()
-		{
-			TestFile(@"..\..\Tests\DelegateConstruction.cs");
-		}
-		
 		[Test, Ignore("Not yet implemented")]
 		public void ExpressionTrees()
 		{
