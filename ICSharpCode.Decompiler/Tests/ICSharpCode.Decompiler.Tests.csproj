@@ -85,7 +85,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Async.cs" />
     <Compile Include="CallOverloadedMethod.cs" />
     <Compile Include="CheckedUnchecked.cs" />
     <Compile Include="ControlFlow.cs" />
@@ -109,6 +108,24 @@
     <None Include="TestCases\Code\Readme.txt" />
     <EmbeddedResource Include="TestCases\Code\Lock\LockThis.cs" />
     <EmbeddedResource Include="TestCases\Code\Lock\LockOnType.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\AwaitWithStack2.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\TaskMethodWithoutAwaitButWithExceptionHandling.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\SimpleVoidMethod.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\VoidMethodWithoutAwait.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\AwaitYield.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\AwaitDefaultYieldAwaitable.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\SimpleVoidTaskMethod.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\TaskMethodWithoutAwait.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\SimpleBoolTaskMethod.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\TwoAwaitsWithDifferentAwaiterTypes.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\StreamCopyTo.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\StreamCopyToWithConfigureAwait.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\AwaitInLoopCondition.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\AwaitInForEach.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\NestedAwait.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\AwaitWithStack.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\EmptyTaskMethodWithoutAwait.cs" />
+    <EmbeddedResource Include="TestCases\Code\Async\EmptyVoidMethodWithoutAwait.cs" />
     <Compile Include="TestCases\CompilerVersion.cs" />
     <Compile Include="TestCases\CodeTestCase.cs" />
     <Compile Include="TestCases\CodeTestCaseMatcher.cs" />

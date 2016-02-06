@@ -50,12 +50,6 @@ namespace ICSharpCode.Decompiler.Tests
 			return testData;
 		}
 
-		[Test]
-		public void Async()
-		{
-			TestFile(@"..\..\Tests\Async.cs");
-		}
-		
 		[Test, Ignore("disambiguating overloads is not yet implemented")]
 		public void CallOverloadedMethod()
 		{
