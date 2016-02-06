@@ -85,7 +85,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CallOverloadedMethod.cs" />
     <Compile Include="CheckedUnchecked.cs" />
     <Compile Include="ControlFlow.cs" />
     <Compile Include="DoubleConstants.cs" />
@@ -126,6 +125,8 @@
     <EmbeddedResource Include="TestCases\Code\Async\AwaitWithStack.cs" />
     <EmbeddedResource Include="TestCases\Code\Async\EmptyTaskMethodWithoutAwait.cs" />
     <EmbeddedResource Include="TestCases\Code\Async\EmptyVoidMethodWithoutAwait.cs" />
+    <EmbeddedResource Include="TestCases\Code\CallOverloadedMethod\CallMethodUsingInterface.cs" />
+    <EmbeddedResource Include="TestCases\Code\CallOverloadedMethod\OverloadedMethod.cs" />
     <Compile Include="TestCases\CompilerVersion.cs" />
     <Compile Include="TestCases\CodeTestCase.cs" />
     <Compile Include="TestCases\CodeTestCaseMatcher.cs" />

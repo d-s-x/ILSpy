@@ -49,12 +49,6 @@ namespace ICSharpCode.Decompiler.Tests
 			}
 			return testData;
 		}
-
-		[Test, Ignore("disambiguating overloads is not yet implemented")]
-		public void CallOverloadedMethod()
-		{
-			TestFile(@"..\..\Tests\CallOverloadedMethod.cs");
-		}
 		
 		[Test, Ignore("unncessary primitive casts")]
 		public void CheckedUnchecked()
