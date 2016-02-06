@@ -25,6 +25,7 @@ using System.Text;
 
 using ICSharpCode.Decompiler.Ast;
 using ICSharpCode.Decompiler.Tests.Helpers;
+using ICSharpCode.Decompiler.Tests.TestCases;
 using Mono.Cecil;
 using LegacyCSharpCodeProvider = Microsoft.CSharp.CSharpCodeProvider;
 using RoslynCSharpCodeProvider = Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider;
@@ -40,7 +41,12 @@ namespace ICSharpCode.Decompiler.Tests
 
 		protected static void AssertRoundtripCode(string fileName, bool optimize = false, bool useDebug = false, CompilerVersion compilerVersion = CompilerVersion.V4)
 		{
-			var code = RemoveIgnorableLines(File.ReadLines(fileName));
+			AssertRoundtripCode(File.ReadLines(fileName), optimize, useDebug, compilerVersion);
+		}
+
+		protected static void AssertRoundtripCode(IEnumerable<string> lines, bool optimize, bool useDebug, CompilerVersion compilerVersion)
+		{
+			var code = RemoveIgnorableLines(lines);
 			AssemblyDefinition assembly = CompileLegacy(code, optimize, useDebug, compilerVersion);
 
 			AssertAssembly(assembly, code);
@@ -127,13 +133,6 @@ namespace ICSharpCode.Decompiler.Tests
 					throw new NotImplementedException("Unknown compiler version " + compilerVersion);
 			}
 			return options;
-		}
-
-		public enum CompilerVersion
-		{
-			V2,
-			V4,
-			V4Roslyn,
 		}
 	}
 }

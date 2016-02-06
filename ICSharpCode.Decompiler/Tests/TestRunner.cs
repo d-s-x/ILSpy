@@ -16,17 +16,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using DiffLib;
-using ICSharpCode.Decompiler.Ast;
-using ICSharpCode.Decompiler.Tests.Helpers;
-using Microsoft.CSharp;
-using Mono.Cecil;
+using ICSharpCode.Decompiler.Tests.TestCases;
 using NUnit.Framework;
 
 namespace ICSharpCode.Decompiler.Tests
@@ -34,6 +26,30 @@ namespace ICSharpCode.Decompiler.Tests
 	[TestFixture]
 	public class TestRunner : DecompilerTestBase
 	{
+		[Test, TestCaseSource("GetCodeTestCases")]
+		public void RunCode(List<string> lines, bool optimize, bool useDebug, CompilerVersion compiler)
+		{
+			AssertRoundtripCode(lines, optimize, useDebug, compiler);
+		}
+
+		public static IEnumerable<TestCaseData> GetCodeTestCases()
+		{
+			return CodeTestCaseReader.GetTestCases().Select(TransformTestCase);
+		}
+
+		private static TestCaseData TransformTestCase(CodeTestCase code)
+		{
+			var testData = new TestCaseData(code.Lines, code.Optimize, code.UseDebug, code.CompilerVersion);
+			var dot = code.Name.IndexOf('.');
+			testData.SetCategory("Decompilation/" + code.Name.Substring(0, dot));
+			testData.SetName(code.Name.Substring(dot + 1));
+			if (code.IgnoreReason != null)
+			{
+				testData.Ignore(code.IgnoreReason);
+			}
+			return testData;
+		}
+
 		[Test]
 		public void Async()
 		{
@@ -112,14 +128,6 @@ namespace ICSharpCode.Decompiler.Tests
 		public void LiftedOperators()
 		{
 			TestFile(@"..\..\Tests\LiftedOperators.cs");
-		}
-		
-		[TestCase(CompilerVersion.V2)]
-		[TestCase(CompilerVersion.V4)]
-		[TestCase(CompilerVersion.V4Roslyn, IgnoreReason = "Not implemented yet")]
-		public void Lock(CompilerVersion compilerVersion)
-		{
-			TestFile(@"..\..\Tests\Lock.cs", compilerVersion: compilerVersion);
 		}
 		
 		[Test]

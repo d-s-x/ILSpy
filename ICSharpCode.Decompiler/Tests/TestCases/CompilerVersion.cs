@@ -16,23 +16,12 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
-
-public class Lock
+namespace ICSharpCode.Decompiler.Tests.TestCases
 {
-	public void LockThis()
+	public enum CompilerVersion
 	{
-		lock (this)
-		{
-			Console.WriteLine();
-		}
-	}
-
-	public void LockOnType()
-	{
-		lock (typeof(Lock))
-		{
-			Console.WriteLine();
-		}
+		V2,
+		V4,
+		V4Roslyn,
 	}
 }
