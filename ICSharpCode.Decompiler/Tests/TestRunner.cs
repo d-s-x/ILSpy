@@ -50,12 +50,6 @@ namespace ICSharpCode.Decompiler.Tests
 			return testData;
 		}
 		
-		[Test, Ignore("Not yet implemented")]
-		public void ExpressionTrees()
-		{
-			TestFile(@"..\..\Tests\ExpressionTrees.cs");
-		}
-		
 		[Test]
 		public void ExceptionHandling()
 		{
