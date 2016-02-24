@@ -51,13 +51,6 @@ namespace ICSharpCode.Decompiler.Tests
 		}
 		
 		[Test]
-		public void ExceptionHandling()
-		{
-			AssertRoundtripCode(@"..\..\Tests\ExceptionHandling.cs", optimize: false);
-			AssertRoundtripCode(@"..\..\Tests\ExceptionHandling.cs", optimize: false);
-		}
-		
-		[Test]
 		public void Generics()
 		{
 			TestFile(@"..\..\Tests\Generics.cs");

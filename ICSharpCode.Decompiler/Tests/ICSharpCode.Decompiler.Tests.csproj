@@ -134,6 +134,13 @@
     <EmbeddedResource Include="TestCases\Code\ExpressionTrees\ListInitializer.cs" />
     <EmbeddedResource Include="TestCases\Code\ExpressionTrees\IsOperator.cs" />
     <EmbeddedResource Include="TestCases\Code\ExpressionTrees\IndexerAccess.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\UsingStatementThatChangesTheVariable.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\NoUsingStatementBecauseTheVariableIsAssignedTo.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\TryCatchMultipleHandlers.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\TryCatchFinally.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\MethodEndingWithRethrow.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\MethodEndingWithEndFinally.cs" />
+    <EmbeddedResource Include="TestCases\Code\ExceptionHandling\TwoCatchBlocksWithSameVariable.cs" />
     <EmbeddedResource Include="FSharpPatterns\FSharpUsing.fs.Debug.il" />
     <None Include="IL\SequenceOfNestedIfs.Output.cs" />
     <Compile Include="FSharpPatterns\FSharpPatternTests.cs" />
@@ -227,7 +234,6 @@
     <Compile Include="CustomAttributes\CustomAttributeTests.cs" />
     <Compile Include="DecompilerTestBase.cs" />
     <Compile Include="InitializerTests.cs" />
-    <Compile Include="ExceptionHandling.cs" />
     <Compile Include="Generics.cs" />
     <Compile Include="MultidimensionalArray.cs" />
     <Compile Include="TestRunner.cs" />
