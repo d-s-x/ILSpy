@@ -51,12 +51,6 @@ namespace ICSharpCode.Decompiler.Tests
 		}
 		
 		[Test]
-		public void Generics()
-		{
-			TestFile(@"..\..\Tests\Generics.cs");
-		}
-		
-		[Test]
 		public void CustomShortCircuitOperators()
 		{
 			TestFile(@"..\..\Tests\CustomShortCircuitOperators.cs");
