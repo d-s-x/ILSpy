@@ -141,6 +141,9 @@
     <EmbeddedResource Include="TestCases\Code\ExceptionHandling\MethodEndingWithRethrow.cs" />
     <EmbeddedResource Include="TestCases\Code\ExceptionHandling\MethodEndingWithEndFinally.cs" />
     <EmbeddedResource Include="TestCases\Code\ExceptionHandling\TwoCatchBlocksWithSameVariable.cs" />
+    <EmbeddedResource Include="TestCases\Code\CustomShortCircuitOperators\Test3.cs" />
+    <EmbeddedResource Include="TestCases\Code\CustomShortCircuitOperators\Test2.cs" />
+    <EmbeddedResource Include="TestCases\Code\CustomShortCircuitOperators\Main.cs" />
     <EmbeddedResource Include="FSharpPatterns\FSharpUsing.fs.Debug.il" />
     <None Include="IL\SequenceOfNestedIfs.Output.cs" />
     <Compile Include="FSharpPatterns\FSharpPatternTests.cs" />
@@ -149,7 +152,6 @@
     <Compile Include="FSharpPatterns\ToolLocator.cs" />
     <Compile Include="IL\ILTests.cs" />
     <Compile Include="LiftedOperators.cs" />
-    <Compile Include="CustomShortCircuitOperators.cs" />
     <Compile Include="Helpers\CodeAssert.cs" />
     <Compile Include="IncrementDecrement.cs" />
     <Compile Include="NotUsingBlock.cs" />

@@ -51,12 +51,6 @@ namespace ICSharpCode.Decompiler.Tests
 		}
 		
 		[Test]
-		public void CustomShortCircuitOperators()
-		{
-			TestFile(@"..\..\Tests\CustomShortCircuitOperators.cs");
-		}
-		
-		[Test]
 		public void ControlFlowWithDebug()
 		{
 			AssertRoundtripCode(@"..\..\Tests\ControlFlow.cs", optimize: false, useDebug: true);
